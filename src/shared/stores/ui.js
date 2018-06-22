@@ -14,6 +14,8 @@ import appNav from './ui/AppNav';
 import snackBar from './ui/SnackBar';
 import postCreateModal from './ui/PostCreateModal';
 
+const log = logdown.getChildLogger('stores.ui');
+
 @extend({
   auth,
   appBar,
@@ -87,7 +89,7 @@ export default class UIStore {
 
   injectTapEventPlugin() {
     if (process.env.NODE_ENV === 'development') {
-      return console.warn(
+      return log.warn(
         [
           // eslint-disable-line no-console
           'The react-tap-event-plugin is enabled only in production, ',
