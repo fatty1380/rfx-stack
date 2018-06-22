@@ -24,10 +24,11 @@ export function loader() {
     cssModules: {
       loader: ExtractTextPlugin.extract({
         fallbackLoader: 'isomorphic-style-loader',
-        loader: ['css-loader?modules',
+        loader: [
+          'css-loader?modules',
           'importLoaders=1',
-          'localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader']
-         .join('&'),
+          'localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader',
+        ].join('&'),
       }),
     },
     cssGlobal: {

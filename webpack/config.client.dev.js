@@ -25,10 +25,11 @@ export function loader() {
     cssModules: {
       loaders: [
         'style-loader',
-        ['css-loader?modules',
+        [
+          'css-loader?modules',
           'importLoaders=1',
-          'localIdentName=[name]__[local]___[hash:base64:5]']
-        .join('&'),
+          'localIdentName=[name]__[local]___[hash:base64:5]',
+        ].join('&'),
         'postcss-loader',
       ],
     },
@@ -61,11 +62,14 @@ export function config(entry) {
           messages: logServerConfigWebpack(entry),
         },
       }),
-      new BrowserSyncPlugin({
-        host: getenv('BROWSERSYNC_HOST'),
-        port: getenv('BROWSERSYNC_PORT'),
-        proxy: webhost(entry),
-      }, { reload: false }),
+      new BrowserSyncPlugin(
+        {
+          host: getenv('BROWSERSYNC_HOST'),
+          port: getenv('BROWSERSYNC_PORT'),
+          proxy: webhost(entry),
+        },
+        { reload: false },
+      ),
       new webpack.HotModuleReplacementPlugin(),
       new webpack.NoErrorsPlugin(),
     ],
