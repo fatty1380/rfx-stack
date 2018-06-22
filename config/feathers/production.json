@@ -1,4 +1,13 @@
 {
+  "server": {
+    "db": {
+      "host": "PROD_DB_HOST",
+      "name": "PROD_DB_NAME",
+      "port": "PROD_DB_PORT",
+      "user": "PROD_DB_USER",
+      "password": "PROD_DB_PASSWORD"
+    }
+  },
   "auth": {
     "secret": "JNoSF4uRkGB1zhccVkpX3ulB/1KErbj/tuhCTY0dkpVNyYTU8bJiNC4ErCUK4sDSe/YMjuC0kqtlYnWuK8tHsQ=="
   }
