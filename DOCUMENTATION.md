@@ -153,7 +153,7 @@ const store = stores.inject({
 
 The inital state can be dynamically updated using **fetchData**:
 
-For fetching specific data on specific pages (rendered both on the server and client), we use a `static fetchData({ store, params, query })` inside our react containers in`/src/shared/containers/*`. It passes the stores, and react-router params and query for the current location.
+For fetching specific data on specific pages (rendered both on the server and client), we use a `static fetchData({ store, params, query })` inside our react containers in`/src/shared/containers/*`. It passes the stores, and react-router-dom params and query for the current location.
 
 ```javascript
 class Home extends Component {
