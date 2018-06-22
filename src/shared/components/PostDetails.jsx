@@ -41,7 +41,7 @@ const ItemDetail = observer(({ item }) => (
 ));
 
 export default observer(({ item }) => {
-  console.log('Rendering Post Details for item: %o', toJS(item)); // eslint-disable-line
+  log.debug('Rendering Post Details for item: %o', toJS(item)); // eslint-disable-line
 
   return (
     <div className={styles.postList}>
