@@ -2,7 +2,7 @@ import React from 'react';
 import { observer } from 'mobx-react';
 
 // components
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import TimeAgo from 'react-timeago';
 
 // styles

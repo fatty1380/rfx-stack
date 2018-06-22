@@ -17,7 +17,7 @@ export default [
   'react-modal',
   'react-pagify',
   'react-parallax',
-  'react-router',
+  'react-router-dom',
   'react-timeago',
   'rfx-core',
   'validatorjs',

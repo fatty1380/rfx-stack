@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, IndexRoute } from 'react-router';
+import { Switch, Route } from 'react-router-dom';
 
 // Components
 import AppLayout from './containers/AppLayout';
@@ -8,28 +8,44 @@ import NotFound from './containers/NotFound';
 function $import(location, cb, component) {
   return System.import('./containers/' + component) // eslint-disable-line
     .then(module => cb(null, module.default))
-    .catch(err => console.error('Dynamic page loading failed', err)); // eslint-disable-line
+    .catch(err => log.error('Dynamic page loading failed', err)); // eslint-disable-line
 }
 
-export default (
-  <Route path="/" component={AppLayout}>
-    <IndexRoute getComponent={(loc, cb) => $import(loc, cb, 'Home')} />
-
-    <Route path="auth" getComponent={(loc, cb) => $import(loc, cb, 'Auth')} />
-
-    <Route path="messages">
-      <IndexRoute getComponent={(loc, cb) => $import(loc, cb, 'Messages')} />
+const Layout = (...args) => (
+  <AppLayout {...args}>
+    <Switch>
       <Route
-        path="(:messageId)"
+        path="/auth"
+        getComponent={(loc, cb) => $import(loc, cb, 'Auth')}
+      />
+
+      <Route
+        exact
+        path="/messages"
+        getComponent={(loc, cb) => $import(loc, cb, 'Messages')}
+      />
+      <Route
+        exact
+        path="/messages/(:messageId)"
         getComponent={(loc, cb) => $import(loc, cb, 'Message')}
       />
-    </Route>
 
-    <Route
-      path="packages"
-      getComponent={(loc, cb) => $import(loc, cb, 'Packages')}
-    />
+      <Route
+        exact
+        path="/packages"
+        getComponent={(loc, cb) => $import(loc, cb, 'Packages')}
+      />
 
-    <Route path="*" component={NotFound} status={404} />
-  </Route>
+      <Route
+        exact
+        path="/"
+        getComponent={(loc, cb) => $import(loc, cb, 'Home')}
+      />
+      <Route path="*" component={NotFound} status={404} />
+    </Switch>
+  </AppLayout>
 );
+
+const App = (...args) => <Route path="/" component={Layout(...args)} />;
+
+export default App;

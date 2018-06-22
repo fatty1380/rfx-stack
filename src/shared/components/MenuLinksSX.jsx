@@ -3,7 +3,7 @@ import { observer } from 'mobx-react';
 import cx from 'classnames';
 
 // components
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 // stules
 const a = cx('db', 'ph3', 'pv3', 'fw4');

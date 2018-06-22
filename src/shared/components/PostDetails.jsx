@@ -1,5 +1,4 @@
 import React from 'react';
-import { toJS } from 'mobx';
 import { observer } from 'mobx-react';
 import _ from 'lodash';
 
@@ -40,12 +39,8 @@ const ItemDetail = observer(({ item }) => (
   </div>
 ));
 
-export default observer(({ item }) => {
-  console.log('Rendering Post Details for item: %o', toJS(item)); // eslint-disable-line
-
-  return (
-    <div className={styles.postList}>
-      {_.isEmpty(item) ? <NotLoaded /> : <ItemDetail item={item} />}
-    </div>
-  );
-});
+export default observer(({ item }) => (
+  <div className={styles.postList}>
+    {_.isEmpty(item) ? <NotLoaded /> : <ItemDetail item={item} />}
+  </div>
+));

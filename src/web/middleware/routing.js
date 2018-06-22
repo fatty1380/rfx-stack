@@ -1,4 +1,4 @@
-import { match } from 'react-router';
+import { match } from 'react-router-dom';
 
 function handleRouter(req, res, props, ssr) {
   console.log('route:', req.url); // eslint-disable-line no-console

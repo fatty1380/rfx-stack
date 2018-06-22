@@ -5,7 +5,7 @@ import { rehydrate, hotRehydrate, fetchDataOnLocationMatch } from 'rfx-core';
 
 import React from 'react';
 import { render } from 'react-dom';
-import { hashHistory, browserHistory, match } from 'react-router';
+import { hashHistory, browserHistory, match } from 'react-router-dom';
 import { AppContainer } from 'react-hot-loader';
 import routes from '@/shared/routes';
 import App from './App';

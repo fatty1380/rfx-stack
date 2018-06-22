@@ -4,7 +4,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { renderToString } from 'react-dom/server';
-import { RouterContext } from 'react-router';
+import { RouterContext } from 'react-router-dom';
 import { Provider } from 'mobx-react';
 import { setMatchMediaConfig } from 'mobx-react-matchmedia';
 import { fetchData, dehydrate } from 'rfx-core';

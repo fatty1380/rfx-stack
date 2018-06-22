@@ -1,5 +1,5 @@
 import React from 'react';
-import { browserHistory } from 'react-router';
+import { browserHistory } from 'react-router-dom';
 import { observer } from 'mobx-react';
 import { dispatch } from 'rfx-core';
 import $ from '@/shared/styles/_.mixins';

@@ -1,7 +1,7 @@
 import { observable, computed, action, reaction } from 'mobx';
 import { app, service } from '@/shared/app';
 import { verifyJWT } from '@/utils/jwt';
-import { browserHistory } from 'react-router';
+import { browserHistory } from 'react-router-dom';
 import cookie from 'js-cookie';
 import _ from 'lodash';
 
