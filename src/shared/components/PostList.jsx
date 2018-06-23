@@ -34,7 +34,9 @@ const ItemsList = observer(({ items }) => (
         </div>
         <div className="fl w-100 w-40-ns tc tl-ns">
           <p>
-            <b>Created at</b>: <TimeAgo date={item.createdAt} />
+            <b>Created at</b>
+            :
+            <TimeAgo date={item.createdAt} />
           </p>
           <p>
             <b>Updated at:</b> <TimeAgo date={item.updatedAt} />

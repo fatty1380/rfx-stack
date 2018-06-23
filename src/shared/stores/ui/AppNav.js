@@ -3,6 +3,7 @@ import _ from 'lodash';
 
 export default class AppNav {
   @observable isOpen = false;
+
   @observable isDocked = false;
 
   // @toggle('open', 'isOpen')

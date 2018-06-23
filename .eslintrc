@@ -35,5 +35,7 @@
         "functions": false
       }
     ],
+
+    "react/jsx-one-expression-per-line": 0,
   }
 }

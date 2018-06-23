@@ -23,7 +23,7 @@ export default observer(({ search }) => (
       value={search}
       onChange={handleSearch}
     />
-    <button onClick={resetSearch} className={$.buttonPillSearch}>
+    <button type="button" onClick={resetSearch} className={$.buttonPillSearch}>
       <i className="fa fa-times" />
     </button>
   </form>

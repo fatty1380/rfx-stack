@@ -54,6 +54,8 @@ export function loader() {
   };
 }
 
+/* eslint-disable react/destructuring-assignment */
+
 export function config(entry) {
   return {
     bail: true,

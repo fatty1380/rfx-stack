@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
 
 /**
@@ -7,12 +8,6 @@ import { observer } from 'mobx-react';
 export const authorize = ComposedComponent =>
   observer(
     class Auth extends Component {
-      static propTypes = {
-        store: React.PropTypes.object,
-        router: React.PropTypes.object,
-        location: React.PropTypes.object,
-      };
-
       static fetchData(data) {
         if (!data.store.auth.check) {
           return new Promise(resolve => resolve());
@@ -20,6 +15,12 @@ export const authorize = ComposedComponent =>
 
         return ComposedComponent.fetchData(data);
       }
+
+      static propTypes = {
+        store: PropTypes.object,
+        router: PropTypes.object,
+        location: PropTypes.object,
+      };
 
       componentWillMount() {
         if (global.TYPE === 'CLIENT') {
@@ -33,9 +34,9 @@ export const authorize = ComposedComponent =>
       }
 
       render() {
-        return (
-          this.props.store.auth.check && <ComposedComponent {...this.props} />
-        );
+        const { store } = this.props;
+        const { auth } = store;
+        return auth.check && <ComposedComponent {...this.props} />;
       }
     },
   );

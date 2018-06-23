@@ -12,7 +12,10 @@ import styles from '@/shared/styles/PostList.css';
 const NotLoaded = observer(({ item }) => (
   <div>
     <div className="divider border-top" />
-    <h4 className="pt5">Loading ... {!item}</h4>
+    <h4 className="pt5">
+      Loading ...
+      {!item}
+    </h4>
   </div>
 ));
 
@@ -27,11 +30,16 @@ const ItemDetail = observer(({ item }) => (
         )}{' '}
         {item.title}
       </div>
-      <div className="f5 pt3 gray">ID: {item.uuid}</div>
+      <div className="f5 pt3 gray">
+        ID:
+        {item.uuid}
+      </div>
     </div>
     <div className="fl w-100 w-40-ns tc tl-ns">
       <p>
-        <b>Created at</b>: <TimeAgo date={item.createdAt} />
+        <b>Created at</b>
+        :
+        <TimeAgo date={item.createdAt} />
       </p>
       <p>
         <b>Updated at:</b> <TimeAgo date={item.updatedAt} />

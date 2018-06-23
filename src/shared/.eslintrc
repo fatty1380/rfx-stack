@@ -5,7 +5,8 @@
   },
   "globals": {
     "log": true,
-    "logdown": true
+    "logdown": true,
+    "System": true,
   },
   "rules": {
   }

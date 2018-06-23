@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { inject, observer } from 'mobx-react';
 import cx from 'classnames';
@@ -41,12 +42,13 @@ export default class AppLayout extends Component {
   static fetchData() {}
 
   static propTypes = {
-    children: React.PropTypes.node,
-    store: React.PropTypes.object,
+    children: PropTypes.node,
+    store: PropTypes.object,
   };
 
   render() {
-    const { ui, auth } = this.props.store;
+    const { store, children } = this.props;
+    const { ui, auth } = store;
 
     return (
       <MatchMediaProvider breakpoints={ui.breakpoints}>
@@ -78,7 +80,7 @@ export default class AppLayout extends Component {
               authCheck={auth.check}
               user={auth.user}
             />
-            <div className={styles.content}>{this.props.children}</div>
+            <div className={styles.content}>{children}</div>
           </div>
           <Snackbar
             open={ui.snackBar.isOpen}

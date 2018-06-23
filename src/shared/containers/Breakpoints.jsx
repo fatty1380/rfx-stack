@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { inject, observer } from 'mobx-react';
 import cx from 'classnames';
@@ -13,11 +14,13 @@ export default class MatchMedia extends Component {
   static fetchData() {}
 
   static propTypes = {
-    store: React.PropTypes.object,
+    store: PropTypes.object,
   };
 
   render() {
-    const bp = this.props.store.ui.breakpoints;
+    const { store } = this.props;
+    const { breakpoints: bp } = store.ui;
+
     return (
       <div className="pv5">
         <Helmet title="MobX React MatchMedia" />
@@ -33,6 +36,7 @@ export default class MatchMedia extends Component {
           <br />
           <p>
             <button
+              type="button"
               className={cx(button)}
               href="https://github.com/foxhound87/mobx-react-matchmedia"
             >
@@ -42,6 +46,7 @@ export default class MatchMedia extends Component {
           </p>
           <p>
             <button
+              type="button"
               className={cx(button)}
               href="https://www.npmjs.com/package/mobx-react-matchmedia"
             >

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { inject, observer } from 'mobx-react';
 import { authorize } from '@/utils/authorize.hoc';
@@ -21,11 +22,12 @@ export default class Messages extends Component {
   }
 
   static propTypes = {
-    store: React.PropTypes.object,
+    store: PropTypes.object,
   };
 
   render() {
-    const { ui, post } = this.props.store;
+    const { store } = this.props;
+    const { ui, post } = store;
 
     return (
       <div className="pt5">

@@ -34,13 +34,13 @@ export default class PostStore extends BaseStore {
   }
 
   /**
-  * EVENTS
-  * 
-  * If needed, the realtime event handlers can be overriden or extended by adding
-  * logic to the desired method below. The base class will handle all standard
-  * operations: adding new items to the list, updating existing items in the list
-  * and in the selection, and removing items from the list and deselecting if needed.
-  */
+   * EVENTS
+   *
+   * If needed, the realtime event handlers can be overriden or extended by adding
+   * logic to the desired method below. The base class will handle all standard
+   * operations: adding new items to the list, updating existing items in the list
+   * and in the selection, and removing items from the list and deselecting if needed.
+   */
   // onCreated = item => { return super.onCreated(item); };
   // onUpdated = data => { return super.onUpdated(data); };
   // onPatched = data => { return super.onPatched(data); };

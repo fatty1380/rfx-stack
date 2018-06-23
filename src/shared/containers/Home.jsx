@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { inject, observer } from 'mobx-react';
 import cx from 'classnames';
@@ -11,11 +12,13 @@ export default class Home extends Component {
   static fetchData() {}
 
   static propTypes = {
-    store: React.PropTypes.object,
+    store: PropTypes.object,
   };
 
   render() {
-    const bp = this.props.store.ui.breakpoints;
+    const { store } = this.props;
+    const { breakpoints: bp } = store.ui;
+
     return (
       <div className="helvetica">
         <Helmet title="Home" />

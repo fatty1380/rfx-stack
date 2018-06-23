@@ -1,6 +1,6 @@
+/* eslint-disable no-param-reassign */
 export function timestamp(name) {
-  return (hook, next) => {
-    const data = hook.data;
+  return ({ data }, next) => {
     data[name] = new Date();
     next();
   };

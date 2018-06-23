@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { inject, observer } from 'mobx-react';
 import Helmet from 'react-helmet';
 
@@ -14,11 +15,12 @@ export default class Auth extends Component {
   static fetchData() {}
 
   static propTypes = {
-    store: React.PropTypes.object,
+    store: PropTypes.object,
   };
 
   render() {
-    const { ui } = this.props.store;
+    const { store } = this.props;
+    const { ui } = store;
 
     return (
       <div className="pt5 mh5">

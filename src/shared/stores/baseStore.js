@@ -61,12 +61,15 @@ export default class BaseStore {
   @observable sort = {};
 
   @observable searchFields = [];
+
   @observable searchValue = '';
 
   @observable list = [];
+
   @observable selected = _.clone(this.baseItem);
 
   @observable cacheSize = 0;
+
   @observable cachedItems = new Map();
 
   @observable isLoading = false;
@@ -191,7 +194,7 @@ export default class BaseStore {
 
   create({ data = {}, params = {} }) {
     if (_.isEmpty(data)) {
-      return Promise.reject('No Data Specified');
+      return Promise.reject(new Error('No Data Specified'));
     }
 
     this.log.debug(`Creating new ${this.serviceName}: `, { data, params });
@@ -204,7 +207,7 @@ export default class BaseStore {
     if (_.isEmpty(id)) {
       this.log.error('No ID Specified in request', data);
       return Promise.reject(
-        `No ${this.serviceName} ID Specified in method call`,
+        new Error(`No ${this.serviceName} ID Specified in method call`),
       );
     }
 
@@ -311,7 +314,7 @@ export default class BaseStore {
 
   findOne({ query = {} }) {
     if (_.isEmpty(query)) {
-      return Promise.reject('Empty Query');
+      return Promise.reject(new Error('Empty Query'));
     }
 
     return service(this.serviceName)
@@ -377,7 +380,7 @@ export default class BaseStore {
 
   remove(uuid) {
     if (_.isEmpty(uuid)) {
-      return Promise.reject('No UUID Specified for Removal');
+      return Promise.reject(new Error('No UUID Specified for Removal'));
     }
 
     return service(this.serviceName)
@@ -505,80 +508,11 @@ export default class BaseStore {
   @action
   filterBy() {
     return Promise.reject(
-      'NotImplemented: BaseStore "FilterBy" has no default Impementation',
+      new Error(
+        'NotImplemented: BaseStore "FilterBy" has no default Impementation',
+      ),
     );
   }
-
-  // #region Internal Cache implemenation
-
-  cacheList(list = this.list) {
-    if (global.TYPE === 'SERVER') return;
-    if (this.cacheSize <= 0) return;
-
-    _.map(
-      list,
-      l =>
-        !this.isInCache(l.uuid) &&
-        this.setInCache(l.uuid, _.extend(l, { cachedAt: new Date() })),
-    );
-
-    this.cleanCache();
-  }
-
-  getFromCache(id) {
-    return _.isFunction(this.cachedItems.get)
-      ? this.cachedItems.get(id)
-      : this.cachedItems[id];
-  }
-
-  setInCache(id, val) {
-    if (global.TYPE === 'SERVER') return;
-    if (_.isFunction(this.cachedItems.has)) {
-      if (_.isEmpty(val)) {
-        if (this.isInCache(id)) this.cachedItems.remove(id);
-        return;
-      }
-
-      this.cachedItems.set(id, _.extend(val, { cachedAt: new Date() }));
-    } else if (this.isInCache(id)) {
-      if (_.isEmpty(val)) {
-        delete this.cachedItems[id];
-      } else {
-        this.cachedItems[id] = _.extend(val, { cachedAt: new Date() });
-      }
-    }
-  }
-
-  isInCache(id) {
-    if (_.isFunction(this.cachedItems.has)) {
-      return this.cachedItems.has(id);
-    }
-
-    return _.has(this.cachedItems, id);
-  }
-
-  getCacheSize() {
-    if (_.has(this.cachedItems, 'size')) return this.cachedItems.size;
-
-    return _.keys(this.cachedItems).length;
-  }
-
-  cleanCache(trimPercentage = 0.8) {
-    const trimTarget = this.cacheSize * trimPercentage;
-    if (this.getCacheSize() < this.cacheSize) {
-      return;
-    }
-
-    _(this.cachedItems.values || _.values(this.cachedItems))
-      .sortBy(['cachedAt'])
-      .forEach(c => {
-        this.setInCache(c.uuid);
-
-        return this.getCacheSize() > trimTarget;
-      });
-  }
-
-  // #region Logger Utility Methods
 
   logAndThrow(err) {
     if (!_.isEmpty(err.errors)) {

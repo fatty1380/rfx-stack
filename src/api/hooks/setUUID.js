@@ -5,9 +5,7 @@ function assignUUID(item) {
 }
 
 export function setUUID() {
-  return (hook, next) => {
-    const data = hook.data;
-
+  return ({ data }, next) => {
     if (Array.isArray(data)) {
       data.map(item => assignUUID(item));
       return next();

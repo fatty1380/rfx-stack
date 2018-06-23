@@ -18,6 +18,7 @@ export default observer(({ showSection, forms }) => (
   <div className="flex items-center justify-center flex-column pv4 tc">
     <div className="cf dib pv3">
       <button
+        type="button"
         onClick={handleShowSigninSection}
         className={cx($.buttonGroupLeft, {
           _bg1: showSection === 'signin',
@@ -26,6 +27,7 @@ export default observer(({ showSection, forms }) => (
         Login
       </button>
       <button
+        type="button"
         onClick={handleShowSignupSection}
         className={cx($.buttonGroupRight, {
           _bg1: showSection === 'signup',

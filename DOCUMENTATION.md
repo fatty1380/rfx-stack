@@ -186,7 +186,7 @@ import { observer } from 'mobx-react';
 export default class Home extends Component {
 
   static propTypes = {
-    store: React.PropTypes.object,
+    store: PropTypes.object,
   };
 
   render() {

@@ -25,6 +25,8 @@ export default observer(({ children, open, docked }) => (
     docked={docked}
     onRequestChange={handleOnRequestChange}
   >
+    {/* eslint-disable jsx-a11y/click-events-have-key-events */}
     <div onClick={handleOnClick}>{children}</div>
+    {/* eslint-enable jsx-a11y/click-events-have-key-events */}
   </Drawer>
 ));

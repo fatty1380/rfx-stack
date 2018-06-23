@@ -40,7 +40,7 @@ const Avatar = observer(() => (
     <img src="" alt="" className="br-100 pa1 ba b--black-10 h3 w3" />
   </div>
 ));
-
+/* eslint-disable jsx-a11y/anchor-is-valid,jsx-a11y/click-events-have-key-events */
 const UserSubMenu = observer(({ inline }) => (
   <ul className={cx(list, inline ? inlineList : blockList)}>
     <li>
@@ -138,3 +138,5 @@ export default observer(({ user, inline, authCheck, accountMenuIsOpen }) => (
     <div className={cx(styles.divider, { bt: !inline })} />
   </span>
 ));
+
+/* eslint-enable jsx-a11y/anchor-is-valid */

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { inject, observer } from 'mobx-react';
 
 // Components
@@ -22,15 +23,17 @@ export default class Message extends Component {
   }
 
   static propTypes = {
-    store: React.PropTypes.object,
+    store: PropTypes.object,
   };
 
   componentWillUnmount() {
-    return this.props.store.post.clear();
+    const { store } = this.props;
+    return store.post.clear();
   }
 
   render() {
-    const { ui, post } = this.props.store;
+    const { store } = this.props;
+    const { ui, post } = store;
 
     return (
       <div className="pt5 ph4">

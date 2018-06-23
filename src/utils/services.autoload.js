@@ -3,11 +3,11 @@ import globule from 'globule';
 import { log } from './logger';
 
 class ServicesSetup {
-  init(props) {
-    this.dir = props.dir;
-    this.adapter = props.adapter;
-    this.connector = props.connector;
-    this.autoloader = props.autoloader;
+  init({ dir, adapter, connector, autoloader }) {
+    this.dir = dir;
+    this.adapter = adapter;
+    this.connector = connector;
+    this.autoloader = autoloader;
   }
 }
 
@@ -19,12 +19,12 @@ class Services {
     this.app = app;
   }
 
-  init(props) {
-    this.dir = path.resolve(props.dir, 'services');
-    this.connector = props.connector;
-    this.adapter = props.adapter;
+  init({ dir, connector, adapter, autoloader }) {
+    this.dir = path.resolve(dir, 'services');
+    this.connector = connector;
+    this.adapter = adapter;
     this.db = this.connector(this.app.get('server').db);
-    this.autoloader = props.autoloader;
+    this.autoloader = autoloader;
     this.loadServices();
   }
 

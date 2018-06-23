@@ -7,3 +7,11 @@ export default {
   ident: 'postcss',
   plugins: [postcssExtend(), postcssFocus(), autoprefixer()],
 };
+
+// 'postcss-import': { addDependencyTo: webpack },
+// 'postcss-url': {},
+// 'postcss-extend': {},
+// 'postcss-focus': {},
+// autoprefixer: {},
+// precss: {},
+// cssnano: env === 'production' ? { safe: true } : false,

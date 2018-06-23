@@ -42,6 +42,7 @@ export default observer(
     >
       <div className="dtc-l v-mid w-75 db">
         <button
+          type="button"
           onClick={handleNavToggle}
           className={cx(styles.openNavBtn, openNavBtn)}
         >

@@ -1,10 +1,10 @@
 import getenv from 'getenv';
 
 class ServerSetup {
-  init(props) {
-    this.config = props.config;
-    this.namespace = props.namespace;
-    this.logger = props.logger;
+  init({ config, namespace, logger }) {
+    this.config = config;
+    this.namespace = namespace;
+    this.logger = logger;
   }
 }
 
@@ -14,10 +14,9 @@ class ServerStart {
     this.fixUA();
   }
 
-  init(props) {
-    const key = props.namespace || 'api';
+  init({ namespace, logger = null }) {
+    const key = namespace || 'api';
     const configkey = this.configkey || 'server';
-    const logger = props.logger || null;
     const config = this.getFeathersConfig(configkey) || this.getEnvConfig(key);
     this.start(config, key, logger);
   }
