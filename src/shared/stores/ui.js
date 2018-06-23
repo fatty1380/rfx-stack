@@ -1,4 +1,4 @@
-/* eslint no-confusing-arrow: 0 */
+/* eslint-disable no-confusing-arrow */
 import _ from 'lodash';
 import { action, observable, autorun } from 'mobx';
 import { extend } from 'rfx-core';
