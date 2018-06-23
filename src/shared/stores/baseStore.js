@@ -200,6 +200,10 @@ export default class BaseStore {
     this.log.debug(`Creating new ${this.serviceName}: `, { data, params });
     return service(this.serviceName)
       .create(data, params)
+      .then(res => {
+        log.info(`Created new ${this.serviceName}: `, res);
+        return res;
+      })
       .catch(err => this.logAndThrow(err));
   }
 
@@ -295,10 +299,7 @@ export default class BaseStore {
 
     return service(this.serviceName)
       .find(this.query)
-      .then(json => {
-        this.cacheList(json.data);
-        return save ? this.updateList(json) : json.data;
-      })
+      .then(json => (save ? this.updateList(json) : json.data))
       .catch(err => {
         // eslint-disable-next-line no-param-reassign
         err.query = this.query;
@@ -322,21 +323,10 @@ export default class BaseStore {
       .then(response => _.first(response.data));
   }
 
-  get(id, { select = true, query, reload } = {}) {
-    const cached = this.lookup(id);
-    if (!_.isEmpty(cached) && !reload) {
-      return select ? this.setSelected(cached) : Promise.resolve(cached);
-    }
-
+  get(id, { select = true, query } = {}) {
     return service(this.serviceName)
       .get(id, { query })
-      .then(res => {
-        if (res) {
-          this.setInCache(id, res);
-        }
-
-        return select ? this.setSelected(res) : res;
-      })
+      .then(res => (select ? this.setSelected(res) : res))
       .catch(err => {
         if (/NotFound/i.test(err.name) && select) {
           return this.setSelected({});
@@ -357,26 +347,6 @@ export default class BaseStore {
   }
 
   @action getLocal = _.memoize(this._getLocal);
-
-  lookup(id, opts = { async: false }) {
-    const val = this.getFromCache(id);
-
-    if (val) {
-      Promise.resolve(() => {
-        val.cachedAt = Date.now();
-      });
-    }
-
-    if (!opts.async) {
-      return val;
-    }
-
-    if (val) {
-      return Promise.resolve(val);
-    }
-
-    return this.get(id);
-  }
 
   remove(uuid) {
     if (_.isEmpty(uuid)) {
