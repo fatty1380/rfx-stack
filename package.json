@@ -9,8 +9,8 @@
     "url": "git://github.com/foxhound87/rfx-stack.git"
   },
   "scripts": {
-    "lint": "eslint . --ext .jsx,.js --ignore-path .gitignore",
-    "lint:fix": "eslint . --ext .jsx,.js --ignore-path .gitignore --fix",
+    "lint": "eslint . --ext .jsx,.js --ignore-path .eslintignore",
+    "lint:fix": "eslint . --ext .jsx,.js --ignore-path .eslintignore --fix",
     "clean:build": "rm -rf ./public/build && rm -rf ./run/build",
     "clean:modules": "rm -rf ./node_modules && npm cache clean",
     "build:client:web": "cross-env NODE_ENV=production webpack -p --progress",

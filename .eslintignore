@@ -1,3 +1,5 @@
-/build
-/run
+/public/build
+/run/build
 /config
+/webpack
+/node_modules
