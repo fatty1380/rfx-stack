@@ -24,7 +24,9 @@
     "api:debug-brk": "cross-env NODE_ENV=development nodemon --inspect --inspect-brk ./run/start.api.js",
     "api:prod": "cross-env NODE_ENV=production node ./run/build/start.api.bundle.js",
     "seed:dev": "cross-env NODE_ENV=development node ./run/start.seeder.js",
-    "seed:prod": "cross-env NODE_ENV=production node ./run/start.seeder.js"
+    "seed:prod": "cross-env NODE_ENV=production node ./run/start.seeder.js",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "dependencies": {
     "animate.css": "3.5.2",
@@ -90,7 +92,8 @@
     "tachyons": "4.6.1",
     "uuid": "3.0.1",
     "validatorjs": "3.11.0",
-    "winston": "2.3.0"
+    "winston": "2.3.0",
+    "snyk": "^1.83.0"
   },
   "peerDependencies": {
     "react": "15.4.2",
@@ -151,5 +154,6 @@
     "webpack-merge": "^4.1.1",
     "webpack-node-externals": "^1.6.0",
     "whatwg-fetch": "2.0.1"
-  }
+  },
+  "snyk": true
 }
