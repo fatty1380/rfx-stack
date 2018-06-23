@@ -1,7 +1,12 @@
-import { observable } from 'mobx';
-import { toggle } from 'rfx-core';
+import { action, observable } from 'mobx';
+import _ from 'lodash';
 
-@toggle('open', 'isOpen')
 export default class PostCreateModal {
   @observable isOpen = false;
+
+  // @toggle('open', 'isOpen')
+  @action
+  open(val) {
+    this.isOpen = _.isUndefined(val) ? !this.isOpen : val;
+  }
 }

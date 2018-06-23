@@ -1,7 +1,7 @@
 /* eslint no-confusing-arrow: 0 */
 import _ from 'lodash';
-import { observable, autorun } from 'mobx';
-import { extend, toggle } from 'rfx-core';
+import { action, observable, autorun } from 'mobx';
+import { extend } from 'rfx-core';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import materialBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import injectTapEventPlugin from 'react-tap-event-plugin';
@@ -23,7 +23,6 @@ const log = logdown.getChildLogger('stores.ui');
   snackBar,
   postCreateModal,
 })
-@toggle('shiftLayout', 'layoutIsShifted')
 export default class UIStore {
   mui = {};
 
@@ -75,6 +74,12 @@ export default class UIStore {
     //   ? this.appNav.dock(true)
     //   : this.appNav.dock(false),
     // );
+  }
+
+  // @toggle('shiftLayout', 'layoutIsShifted')
+  @action
+  shiftLayout(val) {
+    this.layoutIsShifted = _.isUndefined(val) ? !this.layoutIsShifted : val;
   }
 
   getMui() {
