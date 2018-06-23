@@ -1,0 +1,12 @@
+{
+  "extends": ["../../.eslintrc"],
+  "env": {
+    "browser": true
+  },
+  "globals": {
+    "log": true,
+    "logdown": true
+  },
+  "rules": {
+  }
+}

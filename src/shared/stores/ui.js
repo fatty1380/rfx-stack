@@ -1,7 +1,7 @@
-/* eslint no-confusing-arrow: 0 */
+/* eslint-disable no-confusing-arrow */
 import _ from 'lodash';
-import { observable, autorun } from 'mobx';
-import { extend, toggle } from 'rfx-core';
+import { action, observable, autorun } from 'mobx';
+import { extend } from 'rfx-core';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import materialBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import injectTapEventPlugin from 'react-tap-event-plugin';
@@ -14,6 +14,8 @@ import appNav from './ui/AppNav';
 import snackBar from './ui/SnackBar';
 import postCreateModal from './ui/PostCreateModal';
 
+const log = logdown.getChildLogger('stores.ui');
+
 @extend({
   auth,
   appBar,
@@ -21,7 +23,6 @@ import postCreateModal from './ui/PostCreateModal';
   snackBar,
   postCreateModal,
 })
-@toggle('shiftLayout', 'layoutIsShifted')
 export default class UIStore {
   mui = {};
 
@@ -75,6 +76,12 @@ export default class UIStore {
     // );
   }
 
+  // @toggle('shiftLayout', 'layoutIsShifted')
+  @action
+  shiftLayout(val) {
+    this.layoutIsShifted = _.isUndefined(val) ? !this.layoutIsShifted : val;
+  }
+
   getMui() {
     const mui =
       global.TYPE === 'CLIENT' ? { userAgent: navigator.userAgent } : {};
@@ -87,7 +94,7 @@ export default class UIStore {
 
   injectTapEventPlugin() {
     if (process.env.NODE_ENV === 'development') {
-      return console.warn(
+      return log.warn(
         [
           // eslint-disable-line no-console
           'The react-tap-event-plugin is enabled only in production, ',

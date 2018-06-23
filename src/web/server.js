@@ -6,6 +6,7 @@ import ejs from 'ejs';
 
 import { setupServer, startServer } from '@/utils/server.start';
 import { logServerConfig } from '@/utils/logger';
+import '@/utils/client.logger';
 
 // webpack configs
 import wpc from '~/webpack.config.client.babel';

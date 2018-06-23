@@ -8,6 +8,8 @@ import PostDetails from '@/shared/components/PostDetails';
 import PostCreateModal from '@/shared/components/PostCreateModal';
 import { authorize } from '@/utils/authorize.hoc';
 
+const log = logdown.getChildLogger('containers.Message');
+
 @inject('store')
 @authorize
 @observer
@@ -15,7 +17,7 @@ export default class Message extends Component {
   static postForm;
 
   static fetchData({ store, params }) {
-    console.log('Fetching message data for', params.messageId); // eslint-disable-line
+    log.debug('Fetching message data for', params.messageId);
     return store.post.get(params.messageId);
   }
 

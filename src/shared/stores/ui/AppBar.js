@@ -1,7 +1,12 @@
-import { observable } from 'mobx';
-import { toggle } from 'rfx-core';
+import { action, observable } from 'mobx';
+import _ from 'lodash';
 
-@toggle('toggleAccountMenu', 'accountMenuIsOpen')
 export default class AppBar {
   @observable accountMenuIsOpen = false;
+
+  // @toggle('toggleAccountMenu', 'accountMenuIsOpen')
+  @action
+  toggleAccountMenu(val) {
+    this.accountMenuIsOpen = _.isUndefined(val) ? !this.accountMenuIsOpen : val;
+  }
 }

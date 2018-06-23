@@ -9,6 +9,7 @@ import { Provider } from 'mobx-react';
 import { setMatchMediaConfig } from 'mobx-react-matchmedia';
 import { fetchData, dehydrate } from 'rfx-core';
 import stores from '@/shared/stores';
+
 import bootstrap from './bootstrap';
 
 export default (req, res, props) => {
@@ -20,7 +21,7 @@ export default (req, res, props) => {
     ui: { mui: { userAgent: req.headers['user-agent'] } },
   });
 
-  console.log('jwtCookie: ', req.cookies[cookieName]); // eslint-disable-line no-console
+  log.debug('jwtCookie: ', req.cookies[cookieName]); // eslint-disable-line no-console
 
   Promise.all(bootstrap(store)).then(() =>
     fetchData(store, props)
