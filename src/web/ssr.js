@@ -9,7 +9,6 @@ import { Provider } from 'mobx-react';
 import { setMatchMediaConfig } from 'mobx-react-matchmedia';
 import { fetchData, dehydrate } from 'rfx-core';
 import stores from '@/shared/stores';
-import { log } from '@/utils/client.logger';
 
 import bootstrap from './bootstrap';
 

@@ -1,4 +1,5 @@
 /* eslint global-require: 0 */
+import '@/utils/client.logger';
 import '@/shared/stores'; // initialize stores
 
 import { rehydrate, hotRehydrate, fetchDataOnLocationMatch } from 'rfx-core';
