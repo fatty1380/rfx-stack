@@ -2,17 +2,20 @@ import { dispatch } from 'rfx-core';
 import Form from './_.extend';
 
 export class PostForm extends Form {
-  onSuccess(form) {
-    const storeAction = form.values().uuid ? 'posts.update' : 'posts.create';
+  hooks() {
+    return {
+      onSuccess(form) {
+        const storeAction = `posts.${form.values().uuid ? 'update' : 'create'}`;
 
-    return dispatch(storeAction, form.values())
-      .then(() => dispatch('ui.postCreateModal.open', false))
-      .then(() => dispatch('ui.snackBar.open', 'Post Saved.'))
-      .then(() => form.clear())
-      .catch(err => {
-        form.invalidate(err.message);
-        dispatch('ui.snackBar.open', err.message);
-      });
+        return dispatch(storeAction, { data: form.values() })
+          .then(() => dispatch('ui.postCreateModal.clear'))
+          .then(() => dispatch('ui.snackBar.open', 'Post Saved.'))
+          .catch(err => {
+            form.invalidate(err.message);
+            dispatch('ui.snackBar.open', err.message);
+          });
+      },
+    };
   }
 }
 

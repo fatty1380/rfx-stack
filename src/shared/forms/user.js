@@ -2,15 +2,19 @@ import { dispatch } from 'rfx-core';
 import Form from './_.extend';
 
 class UserForm extends Form {
-  onSuccess(form) {
-    return dispatch('auth.register', form.values())
-      .then(() => dispatch('ui.auth.toggleSection', 'signin'))
-      .then(() => dispatch('ui.snackBar.open', 'Register Successful.'))
-      .then(() => form.clear())
-      .catch(err => {
-        form.invalidate(err.message);
-        dispatch('ui.snackBar.open', err.message);
-      });
+  hooks() {
+    return {
+      onSuccess(form) {
+        return dispatch('auth.register', form.values())
+          .then(() => dispatch('ui.auth.toggleSection', 'signin'))
+          .then(() => dispatch('ui.snackBar.open', 'Register Successful.'))
+          .then(() => form.clear())
+          .catch(err => {
+            form.invalidate(err.message);
+            dispatch('ui.snackBar.open', err.message);
+          });
+      },
+    };
   }
 }
 
