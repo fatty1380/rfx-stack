@@ -162,7 +162,7 @@ For fetching specific data on specific pages (rendered both on the server and cl
 class Home extends Component {
 
   static fetchData({ store }) {
-    return store.post.find();
+    return store.posts.find();
   }
 
   ...
@@ -190,7 +190,7 @@ export default class Home extends Component {
   };
 
   render() {
-    const items = this.props.store.post.list;
+    const items = this.props.store.posts.list;
     return (
      ...
     );

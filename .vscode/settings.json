@@ -10,6 +10,7 @@
   "prettier.tabWidth": 2,
   "prettier.semi": true,
   "prettier.trailingComma": "all",
+  "prettier.eslintIntegration": true,
 
   "files.exclude": {
     "**/.git": true,
@@ -22,5 +23,5 @@
     "**/run/build/**": true,
     "**/*.bundle.js": true,
     "**/public/build/**": true
-  }
+  },
 }
