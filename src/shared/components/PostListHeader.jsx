@@ -9,9 +9,8 @@ const handleAddRandomPost = e => {
   dispatch('posts.create');
 };
 
-const handleCreatePost = e => {
-  e.preventDefault();
-  dispatch('ui.postCreateModal.open', true);
+const handleCreatePost = () => {
+  dispatch('ui.postCreateModal.setup', { open: true });
 };
 
 export default observer(() => (

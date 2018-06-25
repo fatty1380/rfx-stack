@@ -21,7 +21,7 @@ _.assign(styles.content, {
 });
 
 // events
-const handleCloseModal = () => dispatch('ui.postCreateModal.open', false);
+const handleCloseModal = () => dispatch('ui.postCreateModal.clear');
 
 export default observer(({ open, form }) => (
   <Modal

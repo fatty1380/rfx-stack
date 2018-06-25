@@ -4,9 +4,8 @@ import { observer } from 'mobx-react';
 import { dispatch } from 'rfx-core';
 import $ from '@/shared/styles/_.mixins';
 
-const handleEditPost = e => {
-  e.preventDefault();
-  dispatch('ui.postCreateModal.open', true);
+const handleEditPost = post => () => {
+  dispatch('ui.postCreateModal.setup', { post, open: true });
 };
 
 export default observer(({ post }) => (
@@ -28,7 +27,7 @@ export default observer(({ post }) => (
       <button
         type="button"
         value="done"
-        onClick={handleEditPost}
+        onClick={handleEditPost(post)}
         className={$.buttonPill}
       >
         <i className="fa fa-edit" /> Edit
