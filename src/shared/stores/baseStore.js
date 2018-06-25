@@ -1,4 +1,4 @@
-import { action, computed, extendObservable, observable, toJS } from 'mobx';
+import { action, computed, set, observable } from 'mobx';
 import _ from 'lodash';
 
 import { service } from '@/shared/app';
@@ -13,14 +13,14 @@ export default class BaseStore {
     searchFields = ['title'],
   }) {
     log.verbose(`Initializing new ${serviceName} instance of BaseStore`);
-    extendObservable(this.baseItem, toJS(baseItem));
+    this.baseItem = baseItem;
     this.serviceName = serviceName;
     this.cacheSize = cacheSize;
     this.searchFields = searchFields;
 
     this.cachedItems = observable.map({ cachedAt: new Date() });
 
-    extendObservable(this.selected, _.clone(this.baseItem));
+    this.selected = _.clone(this.baseItem);
 
     this.log.debug(
       `Initialized new instance of the BaseStore for "${serviceName}"`,
@@ -401,24 +401,17 @@ export default class BaseStore {
     }
     this.log.debug('Received %s Update: %O', this.serviceName, data);
 
-    // Update Cached Item if already present. Ignore uncached item updates
-    if (this.isInCache(data.uuid)) {
-      this.setInCache(data.uuid, _.extend(data, { cachedAt: new Date() }));
-    }
-
-    this.setInCache(data.uuid, _.extend(data, { cachedAt: new Date() }));
-
     const existing = _.find(this.list, { uuid: data.uuid });
     if (existing) {
       if (_.isBoolean(data.deleted) && data.deleted) {
         this.list.remove(existing);
       } else {
-        extendObservable(existing, data);
+        set(existing, data);
       }
     }
 
     if (_.get(this.selected, 'uuid') === data.uuid) {
-      extendObservable(this.selected, data);
+      this.selected = data;
     }
 
     return true;

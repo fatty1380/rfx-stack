@@ -1,5 +1,5 @@
 import { store } from 'rfx-core';
-import { useStrict } from 'mobx';
+import { configure } from 'mobx';
 
 import UIStore from './stores/ui';
 import AppStore from './stores/app';
@@ -11,7 +11,9 @@ import PostStore from './stores/post';
   In strict mode, it is not allowed to
   change any state outside of an action
  */
-useStrict(true);
+configure({
+  enforceActions: true,
+});
 
 /**
   Stores
