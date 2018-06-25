@@ -9,7 +9,7 @@ export default class PostStore extends BaseStore {
   constructor() {
     const baseItem = PostStore.BASE_ITEM;
 
-    super({ serviceName: 'post', baseItem, searchFields: ['title'] });
+    super({ serviceName: 'posts', baseItem, searchFields: ['title'] });
 
     return this;
   }

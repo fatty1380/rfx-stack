@@ -7,7 +7,7 @@ import $ from '@/shared/styles/_.mixins';
 const handleSelect = e => {
   e.preventDefault();
   const val = e.target.value;
-  dispatch('post.filterBy', val);
+  dispatch('posts.filterBy', val);
 };
 
 export default observer(({ filter }) => (

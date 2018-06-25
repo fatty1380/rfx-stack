@@ -6,7 +6,7 @@ import $ from '@/shared/styles/_.mixins';
 
 const handleAddRandomPost = e => {
   e.preventDefault();
-  dispatch('post.create');
+  dispatch('posts.create');
 };
 
 const handleCreatePost = e => {

@@ -18,7 +18,7 @@ import postForm from '@/shared/forms/post';
 @observer
 export default class Messages extends Component {
   static fetchData({ store }) {
-    return store.post.find();
+    return store.posts.find();
   }
 
   static propTypes = {
@@ -27,15 +27,15 @@ export default class Messages extends Component {
 
   render() {
     const { store } = this.props;
-    const { ui, post } = store;
+    const { ui, posts } = store;
 
     return (
       <div className="pt5">
         <Helmet title="Message List" />
         <PostListHeader />
-        <PostListBar post={post} />
+        <PostListBar posts={posts} />
         <div className="pa4 _c4">
-          <PostList items={post.list} />
+          <PostList items={posts.list} />
         </div>
         <PostCreateModal open={ui.postCreateModal.isOpen} form={postForm} />
       </div>

@@ -3,7 +3,7 @@ import { setUUID } from '@/api/hooks/setUUID';
 
 /**
   Hook: before
-  Service: post
+  Service: posts
 */
 export default {
   all: [auth.authenticate(['jwt', 'local'])],

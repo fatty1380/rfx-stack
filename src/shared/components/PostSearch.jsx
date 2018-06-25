@@ -6,12 +6,12 @@ import $ from '@/shared/styles/_.mixins';
 const handleSearch = e => {
   e.preventDefault();
   const val = e.target.value;
-  dispatch('post.search', val);
+  dispatch('posts.search', val);
 };
 
 const resetSearch = e => {
   e.preventDefault();
-  dispatch('post.search', null);
+  dispatch('posts.search', null);
 };
 
 export default observer(({ search }) => (

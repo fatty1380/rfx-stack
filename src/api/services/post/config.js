@@ -1,6 +1,6 @@
 export default {
-  model: 'post',
-  namespace: '/post',
+  model: 'posts',
+  namespace: '/posts',
   options: {
     id: 'uuid',
     paginate: {

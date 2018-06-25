@@ -19,7 +19,7 @@ export default class Message extends Component {
 
   static fetchData({ store, params }) {
     log.debug('Fetching message data for', params.messageId);
-    return store.post.get(params.messageId);
+    return store.posts.get(params.messageId);
   }
 
   static propTypes = {
@@ -28,23 +28,23 @@ export default class Message extends Component {
 
   componentWillUnmount() {
     const { store } = this.props;
-    return store.post.clear();
+    return store.posts.clearSelected();
   }
 
   render() {
     const { store } = this.props;
-    const { ui, post } = store;
+    const { ui, posts } = store;
 
     return (
       <div className="pt5 ph4">
         <Helmet title="Message Details" />
-        <PostDetailsHeader post={post.selected} />
+        <PostDetailsHeader post={posts.selected} />
         <div className="pv4 _c4">
-          <PostDetails item={post.selected} />
+          <PostDetails item={posts.selected} />
         </div>
         <PostCreateModal
           open={ui.postCreateModal.isOpen}
-          form={post.editForm}
+          form={ui.postCreateModal.editForm}
         />
       </div>
     );

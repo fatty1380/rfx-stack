@@ -17,5 +17,5 @@ function pushData() {
 
 export function postSeederDevelopment(n = 15) {
   _.times(n, pushData);
-  return service('post').create(items);
+  return service('posts').create(items);
 }

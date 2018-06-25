@@ -20,5 +20,5 @@ export default store.setup({
   ui: UIStore,
   app: AppStore,
   auth: AuthStore,
-  post: PostStore,
+  posts: PostStore,
 });

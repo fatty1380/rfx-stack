@@ -3,7 +3,7 @@ import Form from './_.extend';
 
 export class PostForm extends Form {
   onSuccess(form) {
-    const storeAction = form.values().uuid ? 'post.update' : 'post.create';
+    const storeAction = form.values().uuid ? 'posts.update' : 'posts.create';
 
     return dispatch(storeAction, form.values())
       .then(() => dispatch('ui.postCreateModal.open', false))
